@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Cyzexx Trading Analysis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --card: #11161d;
+  --gold: #d4af37;
+  --text: #e6e6e6;
+  --muted: #9aa4b2;
+  --green: #00c853;
+  --red: #d50000;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: #0e131a;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1f2630;
+  flex-wrap: wrap;
+}
+
+.logo { font-size: 18px; font-weight: bold; color: var(--gold); letter-spacing: 1px; }
+
+nav { display: flex; flex-wrap: wrap; align-items: center; }
+
+nav button {
+  background: none;
+  border: none;
+  color: var(--text);
+  margin-left: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+nav button:hover { color: var(--gold); }
+
+.section { display: none; padding: 20px; }
+.section.active { display: block; }
+
+.card {
+  background: var(--card);
+  border: 1px solid #1f2630;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2, h3 { color: var(--gold); margin-top: 0; }
+
+.note { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+
+a { color: var(--gold); text-decoration: none; font-weight: bold; }
+ul { margin-left: 20px; }
+
+.partners-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.partner-card {
+  position: relative;
+  background: #11161d;
+  border: 1px solid #1f2630;
+  border-radius: 10px;
+  padding: 15px 20px;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.partner-card a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: #222831;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  width: max-content;
+  max-width: 220px;
+}
+
+.partner-card:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-15px);
+}
+
+/* Analysis full screen grafik */
+.tv-container {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #1f2630;
+}
+
+@media (max-width: 768px) {
+  .tv-container { height: 70vh; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CYZEXX</div>
+  <nav>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('analysis')">Analysis</button>
+    <button onclick="showSection('ema')">EMA Strategy</button>
+    <button onclick="showSection('contact')">Contact</button>
+    <button onclick="showSection('partners')">Hamkorlar</button>
+    <button onclick="showSection('extras')">Extras / Premium</button>
+  </nav>
+</header>
+
+<!-- ABOUT -->
+<div id="about" class="section active">
+  <div class="card">
+    <h2>About & Education</h2>
+    <p>Cyzexx mustaqil tahlil platformasi bo‘lib, faqat <b>ta’lim va tahlil maqsadlarida</b> ishlatiladi.</p>
+    <ul class="note">
+      <li>📊 Market structure & trend analysis</li>
+      <li>📈 EMA 50 / EMA 200 strategy</li>
+      <li>⚖️ Risk management basics</li>
+      <li>🧠 How to analyze the market independently</li>
+    </ul>
+    <div class="note">
+      👤 Sayt egasi: <b>@berd1murodov.fx (Instagram)</b><br>
+      📱 Telegram: <a href="https://t.me/+Ymeco6olnC81Yzgy" target="_blank">@cyzexx_support_bot</a>
+    </div>
+    <div class="note">⚠️ Savdo bo‘yicha qarorlar o‘zingizning mas’uliyatingizda.</div>
+  </div>
+</div>
+
+<!-- ANALYSIS -->
+<div id="analysis" class="section">
+  <div class="tv-container" id="tradingview_chart"></div>
+</div>
+
+<!-- EMA STRATEGY -->
+<div id="ema" class="section">
+  <div class="card">
+    <h2>EMA 50 / EMA 200 Strategy</h2>
+    <ul>
+      <li>📈 EMA 50 - qisqa muddatli trend</li>
+      <li>📊 EMA 200 - uzoq muddatli trend</li>
+      <li>🔍 EMA50 kesish EMA200 → potentsial buy/sell signal</li>
+      <li>💡 Doimo market structure va risk management bilan tasdiqlang</li>
+      <li>📊 Qo‘shimcha indikatorlar: RSI, MACD, Bollinger Bands</li>
+    </ul>
+    <p class="note">Faqat ta’lim maqsadida.</p>
+  </div>
+</div>
+
+<!-- CONTACT / PREMIUM SIGNAL CHANNEL -->
+<div id="contact" class="section">
+  <div class="card">
+    <h2>Premium Signal Kanal</h2>
+    <p>Premium signals olishni xohlaysizmi? Kanalga qo‘shilish uchun <b>admin bilan bog‘laning:</b></p>
+    <p>📩 Admin: <b>admin@Cyzexx337</b></p>
+    <p>Telegram bot orqali shaxsiy maslahat va signal olish mumkin:</p>
+    <p>👉 <a href="https://t.me/+Ymeco6olnC81Yzgy" target="_blank">@cyzexx_support_bot</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/berd1murodov.fx" target="_blank">@berd1murodov.fx</a></p>
+    <div class="note">
+      📩 SMS: 1 USDT / 0.5 TON<br>
+      📞 Call: 1.2 USDT / 0.8 TON<br>
+      ⏰ Ish vaqti: <b>14:30 – 23:00</b><br>
+      🔒 Kanalga qo‘shilish faqat admin ruxsati bilan
+    </div>
+  </div>
+</div>
+
+<!-- PARTNERS -->
+<div id="partners" class="section">
+  <div class="card">
+    <h2>Hamkorlar / Budget</h2>
+    <div class="partners-container">
+      <div class="partner-card">
+        <a href="https://www.instagram.com/berd1murodov.fx/" target="_blank">Instagram</a>
+        <div class="tooltip">Sayt egasi</div>
+      </div>
+      <div class="partner-card">
+        <a href="https://t.me/+Ymeco6olnC81Yzgy" target="_blank">Telegram Channel</a>
+        <div class="tooltip">Platforma va premium signal kanali</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRAS / PREMIUM -->
+<div id="extras" class="section">
+  <div class="card">
+    <h2>Extras / Premium</h2>
+    <p class="note">Qo‘shimcha indikatorlar va maslahatlar Premium signals orqali mavjud.</p>
+  </div>
+</div>
+
+<footer style="text-align:center; padding:15px; background:#0e131a; color:#d4af37;">
+  © 2026 Cyzexx | Sayt egasi: 
+  <a href="https://www.instagram.com/berd1murodov.fx/" target="_blank" style="color:#d4af37; text-decoration:none;">@berd1murodov.fx</a>
+</footer>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+new TradingView.widget({
+  container_id: "tradingview_chart",
+  autosize: true,
+  symbol: "BINANCE:BTCUSDT",
+  interval: "15",
+  timezone: "Etc/UTC",
+  theme: "dark",
+  style: "1",
+  locale: "en",
+  toolbar_bg: "#0e131a",
+  enable_publishing: false,
+  allow_symbol_change: true,
+  studies: ["EMA@tv-basicstudies","EMA@tv-basicstudies","RSI@tv-basicstudies","MACD@tv-basicstudies","BollingerBands@tv-basicstudies"],
+  studies_overrides: {
+    "EMA@tv-basicstudies.length": 50,
+    "EMA@tv-basicstudies.length.1": 200
+  }
+});
+</script>
+
+</body>
+</html>
